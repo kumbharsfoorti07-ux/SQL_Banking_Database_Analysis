@@ -1,5 +1,5 @@
-CREATE DATABASE BankingDB;
 USE BankingDB;
+
 CREATE TABLE Customers (
     CustomerID INT PRIMARY KEY,
     FirstName VARCHAR(50),
@@ -8,8 +8,7 @@ CREATE TABLE Customers (
     Phone VARCHAR(15),
     AccountCreationDate DATE
 );
-SHOW DATABASES;
-DESC Customers;
+
 CREATE TABLE Accounts (
     AccountID INT PRIMARY KEY,
     CustomerID INT,
@@ -47,9 +46,16 @@ CREATE TABLE Loans (
     InterestRate DECIMAL(5,2),
     StartDate DATE,
     EndDate DATE,
-    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
-);
-
-
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomersID)
     
+    ALTER TABLE Customers
+ADD DateOfBirth DATE;
+
+ALTER TABLE Customers
+MODIFY Phone VARCHAR(20);
+
+ALTER TABLE Accounts
+ADD CONSTRAINT chk_MinBalance
+CHECK (Balance >= 1000);
     
+DROP TABLE AccountBranches;
